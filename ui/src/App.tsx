@@ -9,7 +9,7 @@ class App extends Component {
 
   async componentDidMount() {
     const api = new Api();
-    const response = await api.hello("Test");
+    const response = await api.hello("UI");
     this.setState({ greeting: response.message });
   }
 
