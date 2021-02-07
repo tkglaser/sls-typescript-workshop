@@ -1,12 +1,15 @@
 import { HelloService } from "service";
 
-module.exports.hello = async (event: any) => {
+module.exports.hello = async ({
+  queryStringParameters: { name },
+}: {
+  queryStringParameters: { name: string };
+}) => {
   const svc = new HelloService();
   return {
     statusCode: 200,
     body: JSON.stringify({
-      message: svc.hello("dog"),
-      input: event,
+      message: svc.hello(name ?? "dog"),
     }),
   };
 };
