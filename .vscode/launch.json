@@ -22,7 +22,8 @@
       "request": "launch",
       "name": "Launch Chrome debug",
       "url": "http://localhost:3000",
-      "webRoot": "${workspaceFolder}/ui",
+      "webRoot": "${workspaceFolder}",
+      "sourceMaps": true,
     }
   ]
 }
