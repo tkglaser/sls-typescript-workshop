@@ -3,13 +3,14 @@ import logo from "./logo.svg";
 import "./App.css";
 
 import { Api } from "./api";
+import { Species } from "service";
 
 class App extends Component {
   state = { greeting: "" };
 
   async componentDidMount() {
     const api = new Api();
-    const response = await api.hello("UI");
+    const response = await api.hello("UI", Species.Cat);
     this.setState({ greeting: response.message });
   }
 
