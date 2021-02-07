@@ -5,6 +5,7 @@
   "main": "handler.js",
   "scripts": {
     "build": "tsc --build tsconfig.json",
+    "start": "sls offline --httpPort 2500",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
