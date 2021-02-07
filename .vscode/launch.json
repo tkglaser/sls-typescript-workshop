@@ -10,13 +10,19 @@
       "name": "Debug Hello Function",
       "cwd": "${workspaceFolder}/api/",
       "program": "${workspaceFolder}/api/node_modules/.bin/sls",
-      //   "args": ["invoke", "local", "--no-build", "-f", "hello", "--data", "{}"],
       "args": ["offline"],
       "outFiles": [
         "${workspaceFolder}/api/.build/**/*.js",
         "${workspaceFolder}/service/**/*.js"
       ],
       "console": "integratedTerminal"
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chrome debug",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}/ui",
     }
   ]
 }
