@@ -10,12 +10,12 @@
       "name": "Debug Hello Function",
       "cwd": "${workspaceFolder}/api/",
       "program": "${workspaceFolder}/api/node_modules/.bin/sls",
-      "args": ["offline"],
+      "args": ["offline", "--httpPort", "2500"],
       "outFiles": [
         "${workspaceFolder}/api/.build/**/*.js",
         "${workspaceFolder}/service/**/*.js"
       ],
-      "console": "integratedTerminal"
+      "console": "integratedTerminal",
     },
     {
       "type": "chrome",
@@ -24,6 +24,9 @@
       "url": "http://localhost:3000",
       "webRoot": "${workspaceFolder}/ui/",
       "sourceMaps": true,
+      "sourceMapPathOverrides": {
+        "../src/*": "${workspaceFolder}/service/src/*"
+      }
     }
   ]
 }
