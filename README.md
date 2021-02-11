@@ -259,3 +259,94 @@ npm start
 }
 
 ```
+
+## Part 5: Create a UI
+1. Create the scaffolding
+```
+cd ..
+npx create-react-app ui --template cra-template-typescript
+cd ui
+```
+2. Reference the library
+```
+// package.json
+{
+  "dependencies": {
+    "service": "file:../service"
+  }
+}
+```
+```
+npm install
+```
+3. Add the source
+```
+// src/api.ts
+import { HelloService, Species } from "service";
+
+export class Api {
+  async hello(name: string, species: Species) {
+    // test debugging:
+    const svc = new HelloService();
+    const result = svc.hello("debug", Species.Human);
+    console.log(result);
+
+    const resp = await fetch(
+      `http://localhost:2500/dev/hello?name=${name}&species=${species}`
+    );
+    return resp.json();
+  }
+}
+```
+```
+// src/App.tsx
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+
+import { Api } from "./api";
+import { Species } from "service";
+
+class App extends Component {
+  state = { greeting: "" };
+
+  async componentDidMount() {
+    const api = new Api();
+    const response = await api.hello("UI", Species.Cat);
+    this.setState({ greeting: response.message });
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <p>{this.state.greeting}</p>
+        </header>
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+4. Try it
+*Note: For this to work, the API needs to be running in a separate console.*
+```
+npm start
+```
+5. Debug it
+```
+// .vscode/launch.json, add to configurations array
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chrome debug",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}/ui/",
+      "sourceMaps": true,
+      "sourceMapPathOverrides": {
+        "../src/*": "${workspaceFolder}/service/src/*"
+      }
+    }
+```
