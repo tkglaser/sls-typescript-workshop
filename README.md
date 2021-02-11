@@ -346,7 +346,7 @@ npm start
       "webRoot": "${workspaceFolder}/ui/",
       "sourceMaps": true,
       "sourceMapPathOverrides": {
-        "../src/*": "${workspaceFolder}/service/src/*"
+        "${workspaceFolder}/src/*": "${workspaceFolder}/service/src/*"
       }
     }
 ```
