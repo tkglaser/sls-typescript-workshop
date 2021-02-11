@@ -1,15 +1,18 @@
 import { HelloService, Species } from "service";
 
-module.exports.hello = async ({
-  queryStringParameters: { name, species },
-}: {
+interface HelloRequest {
   queryStringParameters: { name: string; species: any };
-}) => {
+}
+
+module.exports.hello = async (request: HelloRequest) => {
   const svc = new HelloService();
   return {
     statusCode: 200,
     body: JSON.stringify({
-      message: svc.hello(name ?? "dog", species ?? Species.Human),
+      message: svc.hello(
+        request?.queryStringParameters?.name ?? "dog",
+        request?.queryStringParameters?.species ?? Species.Human
+      ),
     }),
   };
 };
