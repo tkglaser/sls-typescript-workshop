@@ -182,7 +182,7 @@ export * from "./species";
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
-    "outDir": "./.lib",
+    "outDir": "./lib",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
